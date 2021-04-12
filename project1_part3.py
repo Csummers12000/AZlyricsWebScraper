@@ -50,12 +50,22 @@ def saferequest(url):
     print("Request " + str(safe_get_counter) + " complete")
     return(get)
 
+with open('D:\Documents\Email_Credentials\SenderEmail.txt', 'r', encoding="utf-8") as cred1: 
+    sender = str(cred1.read())
+cred1.close()
+with open('D:\Documents\Email_Credentials\RecieverEmail.txt', 'r', encoding="utf-8") as cred2: 
+    reciever = str(cred2.read())
+cred2.close()
+with open('D:\Documents\Email_Credentials\Password.txt', 'r', encoding="utf-8") as cred3: 
+    password = str(cred3.read())
+cred3.close()
+
 def EmailAlert_Blocked():
     port = 0
     smpt_server = 'smtp.gmail.com'
-    sender_email = "SoupsPyBot@gmail.com"
-    receiver_email = "Caboose12000@gmail.com"
-    password = '25#3LX47ES@R%UpE81FQ'
+    sender_email = sender
+    receiver_email = reciever
+    password = password
     message = '''\
 Subject: Your Scrape has been blocked
 
@@ -69,9 +79,9 @@ Try to see if it's a reCaptcha or a full block'''
 def EmailAlert_Finished():
     port = 0
     smpt_server = 'smtp.gmail.com'
-    sender_email = "SoupsPyBot@gmail.com"
-    receiver_email = "Caboose12000@gmail.com"
-    password = '25#3LX47ES@R%UpE81FQ'
+    sender_email = sender
+    receiver_email = reciever
+    password = password
     message = '''\
 Subject: Your Scrape has completed
 
@@ -85,9 +95,9 @@ It's finished running, now just make sure the file is okay'''
 def EmailAlert_Crashed_ver_2(errName, errTB):
     port = 0
     smpt_server = 'smtp.gmail.com'
-    sender_email = "SoupsPyBot@gmail.com"
-    receiver_email = "Caboose12000@gmail.com"
-    password = '25#3LX47ES@R%UpE81FQ'
+    sender_email = sender
+    receiver_email = reciever
+    password = password
     header = 'Error: ' + str(errName)
     body = str(errTB)
     message = 'Subject: {}\n\n{}'.format(header, body)
